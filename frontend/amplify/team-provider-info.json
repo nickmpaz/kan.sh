@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-albatross-frontend-prod-103340-authRole",
+            "UnauthRoleArn": "arn:aws:iam::706879839199:role/amplify-albatross-frontend-prod-103340-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::706879839199:role/amplify-albatross-frontend-prod-103340-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-albatross-frontend-prod-103340-deployment",
+            "UnauthRoleName": "amplify-albatross-frontend-prod-103340-unauthRole",
+            "StackName": "amplify-albatross-frontend-prod-103340",
+            "StackId": "arn:aws:cloudformation:us-east-1:706879839199:stack/amplify-albatross-frontend-prod-103340/668d1370-832d-11ea-b00b-0a200f00c284",
+            "AmplifyAppId": "d2z8l6dxdqwe73"
+        },
+        "categories": {
+            "auth": {
+                "albatrossfrontendea8a2859": {}
+            }
+        }
+    }
+}

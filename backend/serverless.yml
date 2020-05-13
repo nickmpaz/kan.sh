@@ -1,0 +1,91 @@
+service: serverless-ws-test
+
+provider:
+
+  name: aws
+  runtime: python3.8
+  websocketsApiName: albatross-backend
+  websocketsApiRouteSelectionExpression: $request.body.message
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:BatchGetItem"
+          - "dynamodb:BatchWriteItem"
+          - "dynamodb:Scan"
+          - "dynamodb:Query"
+      Resource:
+          - "arn:aws:dynamodb:us-east-1:*:*"
+    - Effect: Allow
+      Action:
+          - "cognito-idp:AdminGetUser"
+      Resource:
+          - "arn:aws:cognito-idp:us-east-1:706879839199:userpool/us-east-1_NSlmDs2SZ"
+
+functions:
+
+  ping:
+    handler: src/ping.handler
+    events:
+      - websocket:
+          route: ping
+
+  connect:
+    handler: src/connect.handler
+    events:
+      - websocket:
+          route: connect
+
+  disconnect_handler:
+    handler: src/handler.disconnect_handler
+    events:
+      - websocket:
+          route: $disconnect
+
+  get_boards_handler:
+    handler: src/handler.get_boards_handler
+    events:
+      - websocket:
+          route: get_boards
+  
+  create_board_handler:
+    handler: src/handler.create_board_handler
+    events:
+      - websocket:
+          route: create_board
+
+  delete_board_handler:
+    handler: src/handler.delete_board_handler
+    events:
+      - websocket:
+          route: delete_board
+
+  get_board_contents_handler:
+    handler: src/handler.get_board_contents_handler
+    events:
+      - websocket:
+          route: get_board_contents
+          
+  update_board_contents_handler:
+    handler: src/handler.update_board_contents_handler
+    events:
+      - websocket:
+          route: update_board_contents
+
+  share_board_handler:
+    handler: src/handler.share_board_handler
+    events:
+      - websocket:
+          route: share_board
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+  

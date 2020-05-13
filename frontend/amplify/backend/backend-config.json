@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"albatrossfrontendea8a2859": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
