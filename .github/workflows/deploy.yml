@@ -15,3 +15,5 @@ jobs:
       run: |
         echo "something"
         echo "$SUPER_SECRET"
+        echo "$(pwd)"
+        pwd
