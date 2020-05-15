@@ -10,11 +10,11 @@ echo "Deploying to $environment.";
 
 # deploy frontend
 
-amplify status
 echo "Deploying frontend."
 cd frontend
 echo "Installing dependencies."
 npm ci
+amplify status
 echo "Building frontend."
 npm run build:$environment
 echo "Syncing frontend to s3 bucket."
