@@ -13,6 +13,8 @@ echo "Deploying to $environment...";
 
 cd frontend
 
+npm ci
+
 npm run build:$environment
 
 aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
