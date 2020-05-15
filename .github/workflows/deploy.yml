@@ -10,7 +10,7 @@ jobs:
     steps:
     - shell: bash
       env:
-        SUPER_SECRET: ${{ secrets.SuperSecret }}
+        SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
       run: |
         echo "something"
-        echo "something else"
+        echo "$SUPER_SECRET"
