@@ -6,17 +6,18 @@ do
         e) environment=${OPTARG};;
     esac
 done
-
-echo "Deploying to $environment...";
+echo "Deploying to $environment.";
 
 # deploy frontend
 
+amplify status
+echo "Deploying frontend."
 cd frontend
-
+echo "Installing dependencies."
 npm ci
-
+echo "Building frontend."
 npm run build:$environment
-
+echo "Syncing frontend to s3 bucket."
 aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
 
 # deploy backend
