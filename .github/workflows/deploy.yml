@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - shell: bash
+      name: test name
       env:
         SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
       run: |
