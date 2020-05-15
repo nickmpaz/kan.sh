@@ -1,0 +1,15 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master, develop ]
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - shell: bash
+      env:
+        SUPER_SECRET: ${{ secrets.SuperSecret }}
+      run: |
+        echo "$SUPER_SECRET"
