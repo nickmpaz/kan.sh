@@ -17,3 +17,4 @@ jobs:
         echo "$SUPER_SECRET"
         echo "$(pwd)"
         pwd
+        ls .
