@@ -14,8 +14,4 @@ jobs:
       env:
         SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
       run: |
-        echo "something"
-        echo "$SUPER_SECRET"
-        echo "$(pwd)"
-        pwd
-        echo "$(ls .)"
+        ./deploy.sh -e dev
