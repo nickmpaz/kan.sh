@@ -14,9 +14,7 @@ echo "Deploying frontend."
 cd frontend
 echo "Installing dependencies."
 npm ci
-echo "Installing Amplify CLI."
-npm install -g @aws-amplify/cli
-amplify status
+./node_modules/.bin/amplify status
 echo "Building frontend."
 npm run build:$environment
 echo "Syncing frontend to s3 bucket."
