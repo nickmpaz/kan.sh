@@ -14,7 +14,7 @@ echo "Deploying frontend."
 cd frontend
 echo "Installing dependencies."
 npm ci
-./node_modules/.bin/amplify status
+./node_modules/.bin/amplify pull
 echo "Building frontend."
 npm run build:$environment
 echo "Syncing frontend to s3 bucket."
