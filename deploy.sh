@@ -56,6 +56,12 @@ amplify init \
 
 cd ..
 
+# initialize terraform 
+
+cd terraform 
+
+terraform init
+
 # sudo npm install -g serverless
 
 # deploy frontend
