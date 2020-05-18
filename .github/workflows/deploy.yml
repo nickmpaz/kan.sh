@@ -10,8 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - shell: bash
-      name: test name
+      name: Deploy
       env:
         SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         ./deploy.sh -e dev
