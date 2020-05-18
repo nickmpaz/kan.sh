@@ -90,6 +90,6 @@ cd ..
 
 cd backend
 
-serverless deploy --stage $environment
+sudo serverless deploy --stage $environment
 
 cd ..

@@ -8,9 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - shell: bash
-      name: Deploy
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Branch name
+      run: echo running on branch ${GITHUB_REF##*/}
+    - name: Deploy
+      shell: bash
       env:
         SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
