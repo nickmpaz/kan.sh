@@ -62,17 +62,28 @@ cd terraform
 
 terraform init
 
-# sudo npm install -g serverless
+cd ..
+
+# install serverless
+
+sudo npm install -g serverless
 
 # deploy frontend
 
 cd frontend
+
 npm ci
+
 npm run build:$environment
+
 aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
+
+cd ..
 
 # deploy backend
 
-cd ../backend
+cd backend
 
 serverless deploy --stage $environment
+
+cd ..
