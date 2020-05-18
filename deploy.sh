@@ -3,70 +3,74 @@
 while getopts e: flag
 do
     case "${flag}" in
-        e) environment=${OPTARG};;
+        e) branch=${OPTARG};;
     esac
 done
+
+case $branch in
+  master) environment="prod";;
+  develop) environment="dev";;
+esac
+
 echo "Deploying to $environment.";
 
-# # install and initialize amplify
+# install and initialize amplify
 
-# sudo npm install -g @aws-amplify/cli
+sudo npm install -g @aws-amplify/cli
 
-# mkdir ~/.aws && touch ~/.aws/credentials && touch ~/.aws/config
+mkdir ~/.aws && touch ~/.aws/credentials && touch ~/.aws/config
 
-# cd frontend
+cd frontend
 
-# export VUECONFIG="{\
-# \"SourceDir\":\"src\",\
-# \"DistributionDir\":\"dist\",\
-# \"BuildCommand\":\"npm run-script build\",\
-# \"StartCommand\":\"npm run-script serve\"\
-# }"
+export VUECONFIG="{\
+\"SourceDir\":\"src\",\
+\"DistributionDir\":\"dist\",\
+\"BuildCommand\":\"npm run-script build\",\
+\"StartCommand\":\"npm run-script serve\"\
+}"
 
-# export AWSCLOUDFORMATIONCONFIG="{\
-# \"configLevel\":\"project\",\
-# \"useProfile\":false,\
-# \"profileName\":\"default\",\
-# \"accessKeyId\":\"$AWS_ACCESS_KEY_ID\",\
-# \"secretAccessKey\":\"$AWS_SECRET_ACCESS_KEY\",\
-# \"region\":\"us-east-1\"\
-# }"
+export AWSCLOUDFORMATIONCONFIG="{\
+\"configLevel\":\"project\",\
+\"useProfile\":false,\
+\"profileName\":\"default\",\
+\"accessKeyId\":\"$AWS_ACCESS_KEY_ID\",\
+\"secretAccessKey\":\"$AWS_SECRET_ACCESS_KEY\",\
+\"region\":\"us-east-1\"\
+}"
 
-# export FRONTEND="{\
-# \"frontend\":\"javascript\",\
-# \"framework\":\"vue\",\
-# \"config\":$VUECONFIG\
-# }"
+export FRONTEND="{\
+\"frontend\":\"javascript\",\
+\"framework\":\"vue\",\
+\"config\":$VUECONFIG\
+}"
 
-# export AMPLIFY="{\
-# \"projectName\":\"myproject\",\
-# \"envName\":\"prod\",\
-# \"defaultEditor\":\"vscode\"\
-# }"
+export AMPLIFY="{\
+\"projectName\":\"myproject\",\
+\"envName\":\"prod\",\
+\"defaultEditor\":\"vscode\"\
+}"
 
-# export PROVIDERS="{\
-# \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-# }"
+export PROVIDERS="{\
+\"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+}"
 
-# amplify init \
-# --amplify $AMPLIFY \
-# --frontend $FRONTEND \
-# --providers $PROVIDERS \
-# --yes
+amplify init \
+--amplify $AMPLIFY \
+--frontend $FRONTEND \
+--providers $PROVIDERS \
+--yes
 
-# cd ..
+cd ..
 
-# # initialize terraform 
+# initialize terraform 
 
-# cd terraform 
+cd terraform 
 
-# terraform init
+terraform init
 
-# cd ..
+cd ..
 
 # install serverless and plugins 
-
-# npm install -g serverless
 
 cd backend
 
@@ -74,28 +78,24 @@ npm ci
 
 ./node_modules/.bin/serverless plugin install --name serverless-python-requirements
 
-./node_modules/.bin/serverless deploy --stage $environment
-
-# sudo serverless plugin install -n serverless-python-requirements
-
 cd ..
 
-# # deploy frontend
+# deploy frontend
 
-# cd frontend
+cd frontend
 
-# npm ci
+npm ci
 
-# npm run build:$environment
+npm run build:$environment
 
-# aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
+aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
 
-# cd ..
+cd ..
 
 # deploy backend
 
 cd backend
 
-# sudo serverless deploy --stage $environment
+./node_modules/.bin/serverless deploy --stage $environment
 
 cd ..
