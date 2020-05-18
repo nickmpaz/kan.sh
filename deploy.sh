@@ -8,13 +8,17 @@ do
 done
 echo "Deploying to $environment.";
 
+# install global dependencies
+
+sudo npm install -g @aws-amplify/cli
+
+
 # deploy frontend
 
 echo "Deploying frontend."
 cd frontend
 echo "Installing dependencies."
 npm ci
-./node_modules/.bin/amplify init . --yes
 echo "Building frontend."
 npm run build:$environment
 echo "Syncing frontend to s3 bucket."
