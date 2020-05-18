@@ -68,6 +68,8 @@ echo "Deploying to $environment.";
 
 # npm install -g serverless
 
+echo $(which python3)
+
 cd backend
 
 npm ci
