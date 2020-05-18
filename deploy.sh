@@ -66,11 +66,16 @@ echo "Deploying to $environment.";
 
 # install serverless and plugins 
 
-npm install -g serverless
+# npm install -g serverless
 
 cd backend
 
-sudo serverless plugin install -n serverless-python-requirements
+npm ci
+
+./node_modules/.bin/serverless plugin install --name serverless-python-requirements
+./node_modules/.bin/serverless deploy --stage $environment
+
+# sudo serverless plugin install -n serverless-python-requirements
 
 cd ..
 
@@ -90,6 +95,6 @@ cd ..
 
 cd backend
 
-sudo serverless deploy --stage $environment
+# sudo serverless deploy --stage $environment
 
 cd ..
