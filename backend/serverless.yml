@@ -26,6 +26,8 @@ provider:
       Resource:
           - "arn:aws:cognito-idp:us-east-1:706879839199:userpool/us-east-1_NSlmDs2SZ"
 
+
+
 functions:
 
   ping:
@@ -88,4 +90,5 @@ plugins:
 custom:
   pythonRequirements:
     dockerizePip: non-linux
+    pythonBin: /usr/bin/python3
   
