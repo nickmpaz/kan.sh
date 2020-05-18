@@ -36,7 +36,6 @@
 
         <router-view :websocket="websocket" :configureBackend="configureBackend" :connectToBackend="connectToBackend" @setOnmessageFunction="setOnmessageFunction" :tooltips="tooltips" @setTooltipSettings="setTooltipSettings">
         </router-view>
-  
 
     </v-content>
     <loading-dialog :active="!connected && $route.name != 'Auth'" message="Connecting" />
@@ -45,7 +44,9 @@
 
 <script>
 import LoadingDialog from './components/LoadingDialog'
-import { Hub } from 'aws-amplify';
+import {
+    Hub
+} from 'aws-amplify';
 
 import {
     Auth
@@ -81,7 +82,7 @@ export default {
                 console.log('User not signed in. Redirecting to auth page.')
                 this.$router.push('/auth')
             })
-        
+
     },
     async created() {
         // handle dark mode preference
@@ -94,7 +95,6 @@ export default {
         }
 
         this.getTooltipSettings()
-
 
     },
     methods: {
@@ -159,7 +159,13 @@ export default {
             this.$router.push('/auth');
         },
         getTooltipSettings() {
-            this.tooltips = JSON.parse(localStorage.getItem('tooltips'))
+            if (localStorage.getItem('tooltips')) {
+                console.log('Found tooltip preference: ' + localStorage.getItem('tooltips'))
+                this.tooltips = JSON.parse(localStorage.getItem('tooltips'))
+            } else {
+                console.log('Did not find tooltip preference. Setting to default.')
+                this.tooltips = this.$tooltipDefault
+            }
         },
         setTooltipSettings(tooltips) {
             this.tooltips = tooltips
@@ -173,9 +179,9 @@ export default {
 </script>
 
 <style>
-/*
+
 html {
     overflow-y: auto;
 }
-*/
+
 </style>

@@ -23,6 +23,7 @@ Vue.prototype.$settings = settings
 
 
 Vue.prototype.$darkModeDefault = true
+Vue.prototype.$tooltipDefault = true
 
 Vue.prototype.$connectRoute = 'connect'
 Vue.prototype.$websocketAPI = process.env.VUE_APP_WEBSOCKET_API
