@@ -64,7 +64,7 @@ echo "Deploying to $environment.";
 
 # cd ..
 
-# install serverless and plugins
+# install serverless and plugins 
 
 npm install -g serverless
 
