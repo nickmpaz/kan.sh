@@ -68,13 +68,12 @@ echo "Deploying to $environment.";
 
 # npm install -g serverless
 
-echo $(which python3)
-
 cd backend
 
 npm ci
 
 ./node_modules/.bin/serverless plugin install --name serverless-python-requirements
+
 ./node_modules/.bin/serverless deploy --stage $environment
 
 # sudo serverless plugin install -n serverless-python-requirements

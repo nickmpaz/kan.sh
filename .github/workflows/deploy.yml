@@ -15,7 +15,7 @@ jobs:
     - name: Deploy
       shell: bash
       env:
-        SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
+        CICD: "*"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
