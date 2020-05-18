@@ -68,6 +68,8 @@ cd ..
 
 sudo npm install -g serverless
 
+serverless plugin install --name serverless-python-requirements
+
 # deploy frontend
 
 cd frontend
