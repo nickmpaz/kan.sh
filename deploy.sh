@@ -11,17 +11,14 @@ echo "Deploying to $environment.";
 # install global dependencies
 
 sudo npm install -g @aws-amplify/cli
-
+# sudo npm install -g serverless
 
 # deploy frontend
 
-echo "Deploying frontend."
 cd frontend
-echo "Installing dependencies."
+amplify init . --yes
 npm ci
-echo "Building frontend."
 npm run build:$environment
-echo "Syncing frontend to s3 bucket."
 aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
 
 # deploy backend
