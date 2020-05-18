@@ -64,11 +64,11 @@ terraform init
 
 cd ..
 
-# install serverless
+# install serverless and plugins
 
 sudo npm install -g serverless
 
-sudo serverless plugin install --name serverless-python-requirements
+serverless plugin install -n serverless-python-requirements
 
 # deploy frontend
 
