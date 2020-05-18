@@ -15,5 +15,8 @@ jobs:
         SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
+        COGNITO_APP_CLIENT_ID: ${{ secrets.COGNITO_APP_CLIENT_ID }}
+        COGNITO_USERPOOL_ID: ${{ secrets.COGNITO_USERPOOL_ID }}
       run: |
         ./deploy.sh -e dev

@@ -7,7 +7,10 @@ from jose import jwk, jwt
 from jose.utils import base64url_decode
 
 from dotenv import load_dotenv
-load_dotenv()
+
+# These env variables will be in the CICD environment, no need to read from environment file
+if os.getenv('CICD') is None:
+    load_dotenv()
 
 region = os.getenv('COGNITO_REGION')
 userpool_id = os.getenv('COGNITO_USERPOOL_ID')
