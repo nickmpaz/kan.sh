@@ -22,4 +22,4 @@ jobs:
         COGNITO_APP_CLIENT_ID: ${{ secrets.COGNITO_APP_CLIENT_ID }}
         COGNITO_USERPOOL_ID: ${{ secrets.COGNITO_USERPOOL_ID }}
       run: |
-        ./deploy.sh -e dev
+        ./deploy.sh -e ${GITHUB_REF##*/}
