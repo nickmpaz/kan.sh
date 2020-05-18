@@ -12,6 +12,8 @@ echo "Deploying to $environment.";
 
 sudo npm install -g @aws-amplify/cli
 
+mkdir ~/.aws && touch ~/.aws/credentials && touch ~/.aws/config
+
 cd frontend
 
 export VUECONFIG="{\
@@ -59,7 +61,6 @@ cd ..
 # deploy frontend
 
 cd frontend
-amplify init . --yes --amplify {"envName": "prod"}
 npm ci
 npm run build:$environment
 aws s3 sync --delete ./dist s3://$(cd ../terraform && terraform output bucket_$environment)
