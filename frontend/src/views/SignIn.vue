@@ -1,6 +1,6 @@
 <template>
 <v-row align="center" justify="center">
-    <v-col cols="12" sm="8" md="4">
+    <v-col cols="12" sm="8" md="6" lg="5" xl="4">
         <v-card class="elevation-12">
             <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>Sign In</v-toolbar-title>
@@ -11,10 +11,20 @@
                     <v-text-field @keydown.enter="signIn()" v-model="password" :rules="passwordRules" id="Password" label="Password" name="Password" prepend-icon="lock" type="password" required />
                 </v-form>
             </v-card-text>
-            <div class="d-flex py-5 justify-space-around">
-                <v-btn color="primary" @click.stop="switchToSignUp()"  outlined  width="200">Sign Up</v-btn>
-                <v-btn color="primary" @click.stop="signIn()" :loading="loading" width="200" >Sign In</v-btn>
-            </div>
+            <v-container>
+                <v-row>
+                    <v-col cols="12" lg="6">
+                        <div class="d-flex justify-center">
+                            <v-btn color="primary" @click.stop="switchToSignUp()" outlined width="200">Sign Up</v-btn>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" lg="6">
+                        <div class="d-flex justify-center">
+                            <v-btn color="primary" @click.stop="signIn()" :loading="loading" width="200">Sign In</v-btn>
+                        </div>
+                    </v-col>
+                </v-row>
+            </v-container>
         </v-card>
     </v-col>
 </v-row>
