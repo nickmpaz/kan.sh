@@ -34,16 +34,15 @@
     </v-app-bar>
     <v-content>
 
-        <router-view :websocket="websocket" :configureBackend="configureBackend" :connectToBackend="connectToBackend" @setOnmessageFunction="setOnmessageFunction" :tooltips="tooltips" @setTooltipSettings="setTooltipSettings">
+        <router-view :connected="connected" :websocket="websocket" :configureBackend="configureBackend" :connectToBackend="connectToBackend" @setOnmessageFunction="setOnmessageFunction" :tooltips="tooltips" @setTooltipSettings="setTooltipSettings">
         </router-view>
 
     </v-content>
-    <loading-dialog :active="!connected && $route.name != 'Auth'" message="Connecting" />
 </v-app>
 </template>
 
 <script>
-import LoadingDialog from './components/LoadingDialog'
+// import LoadingDialog from './components/LoadingDialog'
 import {
     Hub
 } from 'aws-amplify';
@@ -173,7 +172,7 @@ export default {
         }
     },
     components: {
-        LoadingDialog
+        // LoadingDialog
     }
 }
 </script>

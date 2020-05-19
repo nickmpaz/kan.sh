@@ -32,8 +32,10 @@
 
         </v-col>
     </v-row>
-    <loading-dialog :active="loadingDialog" message="Loading" />
+    <loading-dialog :active="connected && loadingDialog" message="Loading" />
     <loading-dialog :active="creatingDialog" message="Creating" />
+    <loading-dialog :active="!connected" message="Connecting" />
+
 
 </v-container>
 </template>
@@ -47,7 +49,7 @@ import Fuse from 'fuse.js'
 import LoadingDialog from '../components/LoadingDialog'
 
 export default {
-    props: ['websocket', 'configureBackend', 'connectToBackend', 'tooltips'],
+    props: ['connected', 'websocket', 'configureBackend', 'connectToBackend', 'tooltips'],
     computed: {
         filteredBoards: function () {
             if (this.search === '') return this.boards

@@ -110,8 +110,9 @@
         </draggable>
     </div>
     <!-- dialogs -->
-    <loading-dialog :active="loadingDialog" message="Loading" />
+    <loading-dialog :active="connected && loadingDialog" message="Loading" />
     <loading-dialog :active="deleteLoadingDialog" message="Deleting"/>
+    <loading-dialog :active="!connected" message="Connecting" />
     <create-card-dialog :active="createCardDialog" @cancelDialog="cancelDialog" @saveCreateCard="saveCreateCard" />
     <edit-card-dialog :active="editCardDialog" :title="editTitle" :description="editDescription" @cancelDialog="cancelDialog" @saveEditCard="saveEditCard" @deleteEditCard="deleteEditCard" />
     <share-dialog :active="shareDialog" @cancelDialog="cancelDialog" @shareBoard="shareBoard" />
@@ -131,7 +132,7 @@ import {
 } from 'aws-amplify'
 
 export default {
-    props: ['websocket', 'configureBackend', 'connectToBackend', 'tooltips'],
+    props: ['connected', 'websocket', 'configureBackend', 'connectToBackend', 'tooltips'],
     computed: {
         cardDragOptions() {
             return {
